@@ -1,0 +1,19 @@
+version: '3'
+services:
+  ghost:
+    image: nginx
+    restart: always
+    ports:
+      - 4200:4200
+    environment:
+      VIRTUAL_HOST: jacksify9.com/covid19
+      VIRTUAL_PORT: 3005
+    expose:
+      - 3005
+    volumes:
+      - /usr/share/public/nginx-proxy/www/covid:/usr/share/nginx/html
+
+networks:
+  default:
+    external:
+      name: nginx-proxy

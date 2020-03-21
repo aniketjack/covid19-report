@@ -15,6 +15,7 @@ export class DashboardComponent implements OnInit {
   globalData;
   graphData: GraphData;
   modalRef: BsModalRef; 
+  searchText;
   @ViewChild('analysis_summary') analysisSummary: ElementRef;
 
 
