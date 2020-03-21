@@ -1,0 +1,50 @@
+.axis path,
+.axis line {
+    fill: none;
+    stroke: #000;
+  }
+path.domain {
+    stroke: none;
+  }
+.tick line {
+    stroke: #ddd;
+  }
+  .axis { font: 10px sans-serif; }
+  .bar-legend-section{
+    margin-left: 60px;
+    font-size: 12px;
+    margin-bottom: 35px; 
+}
+  span.line-legend-bar{
+    display: inline-block;
+    height: 3px;
+    width: 34px;
+    margin-right: 15px;
+}
+
+.legends{
+  display: table;
+}
+
+.sqr{
+    width: 36px;
+    height: 24px;
+    display: table-cell!important;
+}
+
+.sqr-label{
+  display: table-cell!important;
+  padding-left: 12px;
+}
+
+.confirmed-bg{
+  background-color: #ef9d36;
+}
+
+.deaths-bg{
+  background-color: #ff1e1e;
+}
+
+.recovered-bg{
+  background-color: #007500;
+}

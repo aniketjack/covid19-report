@@ -1,0 +1,72 @@
+.app-title{
+    height: 60px;
+    line-height: 4rem;
+    text-align: center;
+    font-size: 24px;
+}
+
+
+
+
+
+.has-search .form-control {
+    padding-left: 2.375rem;
+}
+
+.has-search .form-control-feedback {
+    position: absolute;
+    z-index: 2;
+    display: block;
+    width: 2.375rem;
+    height: 2.375rem;
+    line-height: 2.375rem;
+    text-align: center;
+    pointer-events: none;
+    color: #aaa;
+}
+
+.box{
+    box-shadow: 0px 0px 8px -3px;
+    margin-bottom: 15px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.box .box-title{
+    color: #fff;
+    font-size: 26px;
+    border-bottom: 1px solid #d6d6d6;
+    /* background: #39addce8; */
+    background: #fea78f;
+    background: -moz-linear-gradient(left, #fea78f 10%, #fe9489 24%, #ff707e 51%, #ff707e 68%);
+    background: -webkit-gradient(left top, right top, color-stop(10%, #fea78f), color-stop(24%, #fe9489), color-stop(51%, #ff707e), color-stop(68%, #ff707e));
+    background: -webkit-linear-gradient(left, #fea78f 10%, #fe9489 24%, #ff707e 51%, #ff707e 68%);
+    background: -o-linear-gradient(left, #fea78f 10%, #fe9489 24%, #ff707e 51%, #ff707e 68%);
+    background: -ms-linear-gradient(left, #fea78f 10%, #fe9489 24%, #ff707e 51%, #ff707e 68%);
+    background: linear-gradient(to right, #fea78f 10%, #fe9489 24%, #ff707e 51%, #ff707e 68%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fea78f', endColorstr='#ff707e', GradientType=1 );
+}
+
+.box-content{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-column-gap: 1px;
+    text-align: center;
+}
+
+.data-item:not(:last-child) {
+    border-right: 2px solid #fd746c;
+}
+
+.confirmed{
+    color: #ef9d36;
+}
+
+.deaths{
+    color: #ff1e1e;
+}
+
+.recovered{
+    color: #007500;
+}
+

@@ -1,0 +1,12 @@
+.copyrgt{
+    color: #777;
+}
+
+.footer-bg{
+    position: fixed;
+    bottom: 0;
+    background: rgba(0,0,0,0.9);
+    color: #fff;
+    font-size: 14px;
+    padding-top: 5px;
+}
