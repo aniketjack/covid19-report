@@ -2,39 +2,60 @@
   <div class="row">
     <div class="col-sm">
       <div class="app-title">
-        Global Corona Virus COVID-19 Report
+        Global COVID-19 Report
       </div>
     </div>
   </div>
   <div class="row">
-    <div class="col-sm">
+    <div class="col-sm-6 col-md-6 margin-top-2">
+      <div class="latest">
+        <div class="latest-title text-left">
+            Global Total
+        </div>
+        <div class="latest-content">
+            <div class="latest-item d-inline-block">
+                <h6>Confirmed</h6>
+                <div class="latest-value confirmed">{{ latestFigures['confirmed'] }}</div>
+            </div>
+            <div class="latest-item d-inline-block">
+              <h6>Deaths</h6>
+              <div class="latest-value deaths">{{ latestFigures['deaths'] }}</div>
+            </div>
+            <div class="latest-item d-inline-block">
+              <h6>Recovered</h6>
+              <div class="latest-value recovered">{{ latestFigures['recovered'] }}</div>
+            </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6 col-md-6">
       <form>
         <div class="form-group has-search">
           <label for="search"></label>
           <span class="form-control-feedback"><i class="fas fa-search"></i></span>
-          <input type="text" class="form-control" name="search" [(ngModel)]="searchText" id="search" aria-describedby="search report" placeholder="Search Country">
+          <input type="text" class="form-control custom-search" name="search" [(ngModel)]="searchText" id="search" aria-describedby="search report" placeholder="Search Country">
         </div>
       </form>
     </div>
   </div>
   <div class="row">
-    <div class="col-sm-6 col-md-4" *ngFor="let item of globalData | search : searchText; let idx = index" (click)="showGraph(item)">
+    <div class="col-sm-6 col-md-4 mt-5" *ngFor="let item of dashboardData | search : 'country': searchText; let idx = index" (click)="showGraph(item)">
       <div class="box">
         <div class="box-title text-center">
-            {{item[0]}}
+            {{item['country']}}
         </div>
         <div class="box-content">
-            <div class="data-item">
+            <div class="data-item pt-2">
                 <h6>Confirmed</h6>
-                <h5 class="item confirmed">{{ item[1][item[1].length - 1]['confirmed'] }}</h5>
+                <h5 class="item confirmed">{{ item['latest']['confirmed'] }}</h5>
             </div>
-            <div class="data-item">
+            <div class="data-item pt-2">
                 <h6>Deaths</h6>
-                <h5 class="item deaths">{{ item[1][item[1].length - 1]['deaths'] }}</h5>
+                <h5 class="item deaths">{{ item['latest']['deaths'] }}</h5>
             </div>
-            <div class="data-item">
+            <div class="data-item pt-2">
               <h6>Recovered</h6>
-              <h5 class="item recovered">{{ item[1][item[1].length - 1]['recovered'] }}</h5>
+              <h5 class="item recovered">{{ item['latest']['recovered'] }}</h5>
             </div>
         </div>
       </div>

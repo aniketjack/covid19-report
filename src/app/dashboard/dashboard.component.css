@@ -19,10 +19,20 @@
     display: block;
     width: 2.375rem;
     height: 2.375rem;
-    line-height: 2.375rem;
+    line-height: 47px;
     text-align: center;
     pointer-events: none;
-    color: #aaa;
+    color: #f8a68f;
+    font-size: 24px;
+    
+}
+
+.has-search input.custom-search{
+    border: none;
+    border-bottom: 1px solid #f56f7e;
+    height: 45px;
+    font-size: 18px;
+    border-radius: 0 !important;
 }
 
 .box{
@@ -58,6 +68,28 @@
     border-right: 2px solid #fd746c;
 }
 
+.latest{
+    position: relative;
+}
+
+.latest .latest-title{
+    font-size: 18px;
+    padding: 5px 5px;
+    border-bottom: 1px solid #f79a8b;
+    margin-bottom: 15px;
+}
+
+.latest .latest-content{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-column-gap: 1px;
+    text-align: center;
+}
+
+.latest .latest-value{
+    font-size: 28px;
+}
+
 .confirmed{
     color: #ef9d36;
 }
@@ -69,4 +101,19 @@
 .recovered{
     color: #007500;
 }
+
+
+/*Globals*/
+
+.margin-top-2{
+    margin-top: 2rem!important;
+}
+
+input[type="text"]:focus {   
+  border-color: transparent;
+  box-shadow: none;
+  outline: 0 none;
+}
+
+
 

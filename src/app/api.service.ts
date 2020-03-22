@@ -16,4 +16,8 @@ export class ApiService {
      return this.http.get('https://pomber.github.io/covid19/timeseries.json');
   }
 
+  getdasboardStat(){
+    return this.http.get('https://coronavirus-tracker-api.herokuapp.com/v2/locations');
+  }
+
 }

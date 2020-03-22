@@ -11,11 +11,14 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-
+  
+  latestFigures;
+  dashboardData;
   globalData;
   graphData: GraphData;
   modalRef: BsModalRef; 
   searchText;
+  isloaded: boolean = false;
   @ViewChild('analysis_summary') analysisSummary: ElementRef;
 
 
@@ -27,18 +30,29 @@ export class DashboardComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.apiService.getCovid19Data().subscribe(res=>{
-       this.watingLoaderService.display(true);
-       this.globalData = Object.entries(res);
-       console.log("Covid 19 data >>> ", this.globalData);
-       this.watingLoaderService.display(false);
+    this.watingLoaderService.display(true);
+    this.apiService.getdasboardStat().subscribe(resp=>{
+      this.latestFigures = resp['latest'];
+      this.dashboardData = resp['locations'];
+      this.apiService.getCovid19Data().subscribe(res=>{
+        this.globalData = Object.entries(res);
+        //console.log("Covid 19 data >>> ", this.globalData);
+        this.watingLoaderService.display(false);
+        this.isloaded = true;
+     })
+
     })
+    
   }
 
   showGraph(data){
+     // extract data
      this.graphData = new GraphData();
-     this.graphData.countryName = data[0];
-     this.graphData.data = data[1].slice(Math.max(data[1].length - 14, 0));
+     this.graphData.countryName = data['country'];
+     let filtered = this.globalData.filter(obj => {
+         return obj[0] === data['country'];
+     });
+     this.graphData.data = filtered[0][1].slice(Math.max(filtered[0][1].length - 14, 0));
 
      this.modalRef = this.modalService.show(this.analysisSummary, {class: 'modal-lg', backdrop: true, ignoreBackdropClick: true});
      //this.router.navigateByUrl('/time-series');
