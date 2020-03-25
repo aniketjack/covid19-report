@@ -62,9 +62,22 @@
     grid-template-columns: repeat(3,1fr);
     grid-column-gap: 1px;
     text-align: center;
+    border-bottom: 2px solid #fd746c;
 }
 
 .data-item:not(:last-child) {
+    border-right: 2px solid #fd746c;
+}
+
+.box-hr-content{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    grid-column-gap: 1px;
+    text-align: center;
+    border-bottom: 2px solid #fd746c;
+}
+
+.box-hr-content .hr-item:not(:last-child){
     border-right: 2px solid #fd746c;
 }
 
@@ -102,6 +115,13 @@
     color: #007500;
 }
 
+.t-active{
+    color: #d6c338;
+}
+
+.t-critical{
+    color: #a00e0e;
+}
 
 /*Globals*/
 

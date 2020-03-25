@@ -12,7 +12,7 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 })
 export class DashboardComponent implements OnInit {
   
-  latestFigures;
+  latestFigures = {};
   dashboardData;
   globalData;
   graphData: GraphData;
@@ -31,17 +31,17 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.watingLoaderService.display(true);
-    this.apiService.getdasboardStat().subscribe(resp=>{
-      this.latestFigures = resp['latest'];
-      this.dashboardData = resp['locations'];
+    this.apiService.getLamoLatestData().subscribe(resp=>{
+      //this.latestFigures = resp['latest'];
+      this.dashboardData = resp;
+      this.apiService.getAll().subscribe(obj=>{ this.latestFigures = obj; })
       this.apiService.getCovid19Data().subscribe(res=>{
         this.globalData = Object.entries(res);
         //console.log("Covid 19 data >>> ", this.globalData);
         this.watingLoaderService.display(false);
         this.isloaded = true;
-     })
-
-    })
+        });
+      });
     
   }
 

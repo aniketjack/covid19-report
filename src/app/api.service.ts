@@ -12,12 +12,20 @@ export class ApiService {
     private http: HttpClient
   ) { }
 
-  getCovid19Data(){
-     return this.http.get('https://pomber.github.io/covid19/timeseries.json');
-  }
+    getCovid19Data(){
+      return this.http.get('https://pomber.github.io/covid19/timeseries.json');
+    }
 
-  getdasboardStat(){
-    return this.http.get('https://coronavirus-tracker-api.herokuapp.com/v2/locations');
-  }
+    getdasboardStat(){
+      return this.http.get('https://coronavirus-tracker-api.herokuapp.com/v2/locations');
+    }
+
+    getLamoLatestData(){
+      return this.http.get('https://corona.lmao.ninja/countries');
+    }
+
+    getAll(){
+      return this.http.get('https://corona.lmao.ninja/all');
+    }
 
 }

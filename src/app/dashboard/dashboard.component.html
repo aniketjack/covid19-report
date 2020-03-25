@@ -1,83 +1,103 @@
+<div class="row">
+  <div class="col-sm">
+    <div class="app-title">
+      Global COVID-19 Report
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-6 col-md-6 margin-top-2">
+    <div class="latest">
+      <div class="latest-title text-left">
+        Global Total
+      </div>
+      <div class="latest-content">
+        <div class="latest-item d-inline-block">
+          <h6>Confirmed</h6>
+          <div class="latest-value confirmed">{{ latestFigures['cases'] }}</div>
+        </div>
+        <div class="latest-item d-inline-block">
+          <h6>Deaths</h6>
+          <div class="latest-value deaths">{{ latestFigures['deaths'] }}</div>
+        </div>
+        <div class="latest-item d-inline-block">
+          <h6>Recovered</h6>
+          <div class="latest-value recovered">{{ latestFigures['recovered'] }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6 col-md-6">
+    <form>
+      <div class="form-group has-search">
+        <label for="search"></label>
+        <span class="form-control-feedback"><i class="fas fa-search"></i></span>
+        <input type="text" class="form-control custom-search" name="search" [(ngModel)]="searchText" id="search"
+          aria-describedby="search report" placeholder="Search Country">
+      </div>
+    </form>
+  </div>
+</div>
+<div class="row" *ngIf="dashboardData">
+  <div class="col-sm-6 col-md-4 mt-5"
+    *ngFor="let item of dashboardData | search : 'country': searchText; let idx = index" (click)="showGraph(item)">
+    <div class="box">
+      <div class="box-title text-center">
+        {{item['country']}}
+      </div>
+      <div class="box-content hvr-bounce-to-top">
+        <div class="data-item pt-2">
+          <h6>Confirmed</h6>
+          <h5 class="item confirmed">{{ item['cases'] }}</h5>
+        </div>
+        <div class="data-item pt-2">
+          <h6>Deaths</h6>
+          <h5 class="item deaths">{{ item['deaths'] }}</h5>
+        </div>
+        <div class="data-item pt-2">
+          <h6>Recovered</h6>
+          <h5 class="item recovered">{{ item['recovered'] }}</h5>
+        </div>
+      </div>
+      <div class="box-hr-content text-center hvr-bounce-to-top">
+        <div class="hr-item pt-2">
+          <h6>Todays Confirmed</h6>
+          <h5 class="item confirmed">{{ item['todayCases'] }}</h5>
+        </div>
+        <div class="hr-item pt-2">
+          <h6>Todays Death</h6>
+          <h5 class="item deaths">{{ item['todayDeaths'] }}</h5>
+        </div>
+      </div>
+      <div class="box-hr-content text-center">
+        <div class="hr-item pt-2">
+          <h6>Active</h6>
+          <h5 class="item t-active">{{ item['active'] }}</h5>
+        </div>
+        <div class="hr-item pt-2">
+          <h6>Critical</h6>
+          <h5 class="item t-critical">{{ item['critical'] }}</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-  <div class="row">
-    <div class="col-sm">
-      <div class="app-title">
-        Global COVID-19 Report
+<ng-template #analysis_summary>
+  <div class="modal-header no-border">
+    <h5 class="modal-title cust-modal-title">Timely Graphical Report of Last two weeks</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="row">
+      <div class="col-sm text-center" style="font-size: 22px;">{{graphData.countryName}}</div>
+    </div>
+    <div class="row">
+      <div class="col-sm">
+        <app-stack-bar-graph [data]="graphData"></app-stack-bar-graph>
       </div>
     </div>
   </div>
-  <div class="row">
-    <div class="col-sm-6 col-md-6 margin-top-2">
-      <div class="latest">
-        <div class="latest-title text-left">
-            Global Total
-        </div>
-        <div class="latest-content">
-            <div class="latest-item d-inline-block">
-                <h6>Confirmed</h6>
-                <div class="latest-value confirmed">{{ latestFigures['confirmed'] }}</div>
-            </div>
-            <div class="latest-item d-inline-block">
-              <h6>Deaths</h6>
-              <div class="latest-value deaths">{{ latestFigures['deaths'] }}</div>
-            </div>
-            <div class="latest-item d-inline-block">
-              <h6>Recovered</h6>
-              <div class="latest-value recovered">{{ latestFigures['recovered'] }}</div>
-            </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-6 col-md-6">
-      <form>
-        <div class="form-group has-search">
-          <label for="search"></label>
-          <span class="form-control-feedback"><i class="fas fa-search"></i></span>
-          <input type="text" class="form-control custom-search" name="search" [(ngModel)]="searchText" id="search" aria-describedby="search report" placeholder="Search Country">
-        </div>
-      </form>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-6 col-md-4 mt-5" *ngFor="let item of dashboardData | search : 'country': searchText; let idx = index" (click)="showGraph(item)">
-      <div class="box">
-        <div class="box-title text-center">
-            {{item['country']}}
-        </div>
-        <div class="box-content">
-            <div class="data-item pt-2">
-                <h6>Confirmed</h6>
-                <h5 class="item confirmed">{{ item['latest']['confirmed'] }}</h5>
-            </div>
-            <div class="data-item pt-2">
-                <h6>Deaths</h6>
-                <h5 class="item deaths">{{ item['latest']['deaths'] }}</h5>
-            </div>
-            <div class="data-item pt-2">
-              <h6>Recovered</h6>
-              <h5 class="item recovered">{{ item['latest']['recovered'] }}</h5>
-            </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <ng-template #analysis_summary>
-    <div class="modal-header no-border">
-      <h5 class="modal-title cust-modal-title">Timely Graphical Report of Last two weeks</h5>
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modalRef.hide()">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-      <div class="row">
-        <div class="col-sm text-center" style="font-size: 22px;">{{graphData.countryName}}</div>
-      </div>
-      <div class="row">
-        <div class="col-sm">
-            <app-stack-bar-graph [data]="graphData"></app-stack-bar-graph>
-        </div>
-      </div>
-    </div>
 </ng-template>
-
